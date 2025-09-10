@@ -2,37 +2,14 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  PopoverGroup,
-} from "@headlessui/react";
+import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/20/solid";
-
-const products = [
-  { name: "Product 1", href: "#" },
-  { name: "Product 2", href: "#" },
-  { name: "Product 3", href: "#" },
-];
-
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
-];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Only show logo on login and signup pages
+  // Only show logo on login and signup pages, but nav on others
   const isAuthPage = pathname === "/login" || pathname === "/signup";
 
   return (
@@ -54,9 +31,9 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Only render nav/buttons if not on auth pages */}
+        {/* --- DESKTOP AND MOBILE MENU (HIDDEN ON AUTH PAGES) --- */}
         {!isAuthPage && (
-          <>  
+          <>
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden">
               <button
@@ -85,7 +62,7 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Mobile Navigation Menu */}
+      {/* --- MOBILE NAVIGATION PANEL --- */}
       {!isAuthPage && (
         <Dialog
           open={mobileMenuOpen}
@@ -117,46 +94,15 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {/* Products Section */}
-                  <Disclosure as="div" className="-mx-3">
-                    <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base font-semibold text-gray-900 hover:bg-gray-50">
-                      Products
-                      <ChevronDownIcon
-                        aria-hidden="true"
-                        className="size-5 flex-none group-data-open:rotate-180"
-                      />
-                    </DisclosureButton>
-                    <DisclosurePanel className="mt-2 space-y-2">
-                      {[...products, ...callsToAction].map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className="block rounded-lg py-2 pr-3 pl-6 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                    </DisclosurePanel>
-                  </Disclosure>
-
-                  {/* Other Links */}
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Features
+                  {/* --- THIS IS THE SECTION THAT WAS CHANGED --- */}
+                  <a href="/home" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                    Home
                   </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Marketplace
+                  <a href="/book-appointment" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                    Book Appointment
                   </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Company
+                  <a href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                    About Us
                   </a>
                 </div>
               </div>
