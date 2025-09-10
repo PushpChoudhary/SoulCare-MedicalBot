@@ -1,4 +1,5 @@
 #  🕊️MindHaven – Mental Healthcare Web App
+<br>
 **Use this link to access the website** https://mind-haven-chatbot.vercel.app/ <br>
 **MindHaven**is an AI-powered mental healthcare web application designed to provide **empathetic, private, and accessible emotional support**through conversational AI, mood tracking, and self-care resources. Built with modern web technologies and NLP, it serves as a first-level support system for individuals experiencing **emotional distress, especially anxiety and depression**.
 
